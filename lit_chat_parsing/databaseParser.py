@@ -16,44 +16,42 @@ def makeDicts():
   shakespeare = {}
   for sent in caesar:
     for word in sent:
-      #if len(word) >= 5:
-      l = list(shakespeare.keys())
-    	if word in l :
-        shakespeare[word].append(" ".join(sent))
-    	else:
-    	  shakespeare[word] = []	  
-    	  shakespeare[word].append(" ".join(sent))
+      if word.lower() in shakespeare.keys():
+        shakespeare[word.lower()].append(" ".join(sent))
+      else:
+        
+        shakespeare[word.lower()] = []
+        shakespeare[word.lower()].append(" ".join(sent))
 
   for sent in hamlet:
     for word in sent:
-      # if len(word) >= 5:
-      l = list(shakespeare.keys())
-      if word in l:
-        shakespeare[word].append(" ".join(sent))
+      if word.lower() in shakespeare.keys():
+        shakespeare[word.lower()].append(" ".join(sent))
       else:
-    	  shakespeare[word] = []
-    	  shakespeare[word].append(" ".join(sent))
+    	  shakespeare[word.lower()] = []
+    	  shakespeare[word.lower()].append(" ".join(sent))
 
   for sent in macbeth:
     for word in sent:
-      #if len(word)>= 5:
-      l= list(shakespeare.keys())
-      if word in l:
-    	  shakespeare[word].append(" ".join(sent))
+      if word.lower() in shakespeare.keys():
+    	  shakespeare[word.lower()].append(" ".join(sent))
       else:
-    	  shakespeare[word] =[]
-    	  shakespeare[word].append(" ".join(sent))
+    	  shakespeare[word.lower()] =[]
+    	  shakespeare[word.lower()].append(" ".join(sent))
 
   return shakespeare
 
-def getSentence(keyword):
-  """returns list of sentences containing given keyword"""
+def getSentence(keyword_list):
+  """returns list of sentences containing given keyword"""  
   shakespeare = makeDicts()
-  #keyword = raw_input("input keyword: ")
-  l = list(shakespeare.keys())
-  if keyword in l:
-    list_ = shakespeare[keyword]
-    return list_
+  #print(keyword_list)
+  list_ = []
+  for keyword in keyword_list:
+    if keyword in shakespeare.keys():
+      #print('here')
+      list_ += shakespeare[keyword]
+      #print(list_)
+      return list_
   else:
     return []
 

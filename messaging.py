@@ -12,7 +12,10 @@ def parseUserMessage(msg):
 	keyword = keywordParse.getKeyword(clean_msg)
 	list_ = databaseParser.getSentence(keyword)
 	to_respond = keywordParse.chooseSentence(list_)
-	return to_respond
+	if to_respond == "":
+		return "Sorry but Shakespeare can't hang"
+	else:
+	    return to_respond
 
 	# if "hi" == msg:
 	# 	response.message('Holla!')
