@@ -1,0 +1,6 @@
+twilio==6.10.2
+Flask==0.12.2
+Flask-Cors==3.0.3
+nltk==3.2.4
+google-cloud-language==1.0.0
+gunicorn==19.7.1
