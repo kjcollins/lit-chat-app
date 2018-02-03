@@ -8,6 +8,7 @@ from nltk.book import *
 nltk.corpus.gutenberg.fileids()
 
 def makeDicts():
+  """makes dictionary of shakespeare sentances word, sentence pairs"""
   caesar = nltk.corpus.gutenberg.sents('shakespeare-caesar.txt')
   hamlet = nltk.corpus.gutenberg.sents('shakespeare-hamlet.txt')
   macbeth = nltk.corpus.gutenberg.sents('shakespeare-macbeth.txt')
@@ -45,11 +46,14 @@ def makeDicts():
 
   return shakespeare
 
-def getSentance(keyword):
+def getSentence(keyword):
+  """returns list of sentences containing given keyword"""
   shakespeare = makeDicts()
   #keyword = raw_input("input keyword: ")
   l = list(shakespeare.keys())
   if keyword in l:
-    lsit = shakespeare[keyword]
-    #search through list for appropriate sentance to print
+    list = shakespeare[keyword]
+  return lsit
+  else:
+  return []
 
