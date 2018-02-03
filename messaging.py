@@ -1,10 +1,10 @@
 # /usr/bin/env python
 # Download the twilio-python library from twilio.com/docs/libraries/python
-from twilio.twiml.messaging_response import MessagingResponse
+from twilio.twiml.messaging_response import Message, MessagingResponse
 from flask import Flask, request, redirect
 from twilio.rest import Client
-# from twilio import twiml
-
+from twilio import twiml
+from nltk.corpus import gutenberg
 
 
 
@@ -12,21 +12,22 @@ app = Flask(__name__)
 @app.route('/sms', methods=['GET', 'POST'])
 
 def sms():
-	msg = request.form['Body'].lower() #gets incoming message
-	if msg == "hi": #based on incoming message, send different message
-		resp = MessagingResponse().message("Holla!")
+	msg = request.form.get('Body').lower().strip() #gets incoming message
+	# if msg == "hi": #based on incoming message, send different message
+	resp = MessagingResponse()
+	if "hi" == msg:
+		resp.message('Holla!')# , to="+17162138995")
 	else:
-		resp = MessagingResponse().message("Stand, ho!")
+		resp = resp.message("Stand, ho!")
 	#return message: if you just want to send any message, return this
 	return str(resp)
 
 if __name__ == "__main__":
 	app.run(debug=True)
 
-# response = MessagingResponse()
-# response.message('Store Location: 123 Easy St.')
 
-# print(response)
+
+
 
 
 # for num in client.api.account.messages.list('+16572206721'):
@@ -35,7 +36,6 @@ if __name__ == "__main__":
 # 		from_='+16572206721',
 # 		url = 'http://demo.twilio.com/docs/classic.mp3'
 # 		)
-
 
 # Find these values at https://twilio.com/user/account
 # account_sid = 
