@@ -17,32 +17,32 @@ def makeDicts():
   for sent in caesar:
     for word in sent:
       #if len(word) >= 5:
-        l= list(shakespeare.keys())
-	if word in l:
-          shakespeare[word].append(" ".join(sent))
-	else:
-	  shakespeare[word] = []	  
-	  shakespeare[word].append(" ".join(sent))
+      l = list(shakespeare.keys())
+    	if word in l :
+        shakespeare[word].append(" ".join(sent))
+    	else:
+    	  shakespeare[word] = []	  
+    	  shakespeare[word].append(" ".join(sent))
 
   for sent in hamlet:
     for word in sent:
-     # if len(word) >= 5:
-        l= list(shakespeare.keys())
-        if word in l:
-          shakespeare[word].append(" ".join(sent))
-        else:
-	  shakespeare[word] = []
-	  shakespeare[word].append(" ".join(sent))
+      # if len(word) >= 5:
+      l = list(shakespeare.keys())
+      if word in l:
+        shakespeare[word].append(" ".join(sent))
+      else:
+    	  shakespeare[word] = []
+    	  shakespeare[word].append(" ".join(sent))
 
   for sent in macbeth:
     for word in sent:
       #if len(word)>= 5:
-        l= list(shakespeare.keys())
-        if word in l:
-      	  shakespeare[word].append(" ".join(sent))
-	else:
-	  shakespeare[word] =[]
-	  shakespeare[word].append(" ".join(sent))
+      l= list(shakespeare.keys())
+      if word in l:
+    	  shakespeare[word].append(" ".join(sent))
+      else:
+    	  shakespeare[word] =[]
+    	  shakespeare[word].append(" ".join(sent))
 
   return shakespeare
 

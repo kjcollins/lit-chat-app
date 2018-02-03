@@ -5,13 +5,13 @@ from flask import Flask, request, redirect
 from twilio.rest import Client
 from twilio import twiml
 from nltk.corpus import gutenberg
-import getKeyword, getSentence, chooseSentence
-
+from lit_chat_parsing import * # getKeyword, getSentence, chooseSentence
+#from databaseParser import *
 def parseUserMessage(msg):
-	clean_msg = processInput(msg)
-	keyword = getKeyword(clean_msg)
-	list_ = getSentence(keyword)
-	to_respond = chooseSentence(list_)
+	clean_msg = keywordParse.processInput(msg)
+	keyword = keywordParse.getKeyword(clean_msg)
+	list_ = databaseParser.getSentence(keyword)
+	to_respond = keywordParse.chooseSentence(list_)
 	return to_respond
 
 	# if "hi" == msg:
