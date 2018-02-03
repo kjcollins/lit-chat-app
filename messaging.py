@@ -5,14 +5,21 @@ from flask import Flask, request, redirect
 from twilio.rest import Client
 from twilio import twiml
 from nltk.corpus import gutenberg
+import getKeyword, getSentence, chooseSentence
 
-def parseUserMessage(msg, response):
-	if "hi" == msg:
-		response.message('Holla!')
-	elif "hello" == msg:
-		response.message("Stand, ho!")
-	else:
-		response.message(inputHandler(msg))
+def parseUserMessage(msg):
+	clean_msg = processInput(msg)
+	keyword = getKeyword(clean_msg)
+	list_ = getSentence(keyword)
+	to_respond = chooseSentence(list_)
+	return to_respond
+
+	# if "hi" == msg:
+	# 	response.message('Holla!')
+	# elif "hello" == msg:
+	# 	response.message("Stand, ho!")
+	# else:
+	# 	response.message(inputHandler(msg))
 
 app = Flask(__name__)
 @app.route('/sms', methods=['GET', 'POST'])

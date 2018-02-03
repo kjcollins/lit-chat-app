@@ -52,8 +52,8 @@ def getSentence(keyword):
   #keyword = raw_input("input keyword: ")
   l = list(shakespeare.keys())
   if keyword in l:
-    list = shakespeare[keyword]
-  return lsit
+    list_ = shakespeare[keyword]
+    return list_
   else:
-  return []
+    return []
 
