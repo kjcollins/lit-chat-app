@@ -4,7 +4,7 @@ import stuff from Gutenberg database and make a dictionary of keywords, and the 
 Femmehacks 2018
 """
 import nltk
-from nltk.book import *
+# from nltk.book import *
 nltk.corpus.gutenberg.fileids()
 
 def makeDicts():

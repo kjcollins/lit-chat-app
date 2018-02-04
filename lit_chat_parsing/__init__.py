@@ -1,1 +1,1 @@
-__all__ = ['databaseParser', 'keywordParse']
+__all__ = ['databaseParser', 'keywordParse', 'sentenceSentiment']

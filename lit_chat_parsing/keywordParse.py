@@ -1,24 +1,9 @@
 # keyword parsing  
 
 from google.cloud import language 
-import googleapiclient.discovery
 
 def processInput(msg):
 	return msg
-
-def analyze_entities_1(text, encoding = 'UTF32'):
-	body={
-	 'document' : {
-	   'type': 'PLAIN_TEXT',
-	   'content' : text, 
-	 },
-	 'encoding_type' : encoding,
-	}
-
-	service = googleapiclient.discovery.build('language', 'v1')
-	request = service.documents().analyzeEntities(body=body)
-	response = request.execute()
-	return response
 
 def analyze_entities_2(text):
 	client = language.LanguageServiceClient()

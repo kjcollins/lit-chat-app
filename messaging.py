@@ -11,7 +11,7 @@ def parseUserMessage(msg):
 	clean_msg = keywordParse.processInput(msg)
 	keyword = keywordParse.getKeyword(clean_msg)
 	list_ = databaseParser.getSentence(keyword)
-	to_respond = keywordParse.chooseSentence(list_)
+	to_respond = sentenceSentiment.chooseSentence(list_)
 	if to_respond == "":
 		return "Sorry but Shakespeare can't hang"
 	else:
