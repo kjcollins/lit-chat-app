@@ -8,14 +8,17 @@ from nltk.corpus import gutenberg
 from lit_chat_parsing import * # getKeyword, getSentence, chooseSentence
 #from databaseParser import *
 def parseUserMessage(msg, shakespeare):
-	clean_msg = keywordParse.processInput(msg)
-	keyword = keywordParse.getKeyword(clean_msg)
-	list_ = databaseParser.getSentence(keyword, shakespeare)
-	to_respond = sentenceSentiment.chooseSentence(list_)
-	if to_respond == "":
-		return "Sorry but Shakespeare can't hang"
+	# clean_msg = keywordParse.processInput(msg)
+	if msg.lower() in ['hi', 'hello', 'what', 'good morning', 'howdy']:
+		return greeting.greeting_on_time()
 	else:
-	    return to_respond
+		keyword = keywordParse.getKeyword(clean_msg)
+		list_ = databaseParser.getSentence(keyword, shakespeare)
+		to_respond = sentenceSentiment.chooseSentence(list_)
+		if to_respond == "":
+			return "Sorry but Shakespeare can't hang"
+		else:
+		    return to_respond
 
 	# if "hi" == msg:
 	# 	response.message('Holla!')
