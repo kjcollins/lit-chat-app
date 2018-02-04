@@ -12,7 +12,7 @@ def parseUserMessage(msg, shakespeare):
 	if msg.lower() in ['hi', 'hello', 'what', 'good morning', 'howdy']:
 		return greeting.greeting_on_time()
 	else:
-		keyword = keywordParse.getKeyword(clean_msg)
+		keyword = keywordParse.getKeyword(msg)
 		list_ = databaseParser.getSentence(keyword, shakespeare)
 		to_respond = sentenceSentiment.chooseSentence(list_)
 		if to_respond == "":
