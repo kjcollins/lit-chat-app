@@ -6,6 +6,18 @@ Femmehacks 2018
 import nltk
 # from nltk.book import *
 nltk.corpus.gutenberg.fileids()
+from .sentenceSentiment import sentimentOfSentence
+
+def addPlay(dict_, play):
+  for sent in play:
+    sent_string = " ".join(sent)
+    sentiment = 1 # sentimentOfSentence(sent_string)
+    for word in sent:
+      if word.lower() in dict_.keys():
+        dict_[word.lower()].append((sentiment, sent_string))
+      else:
+        dict_[word.lower()] = []
+        dict_[word.lower()].append((sentiment, sent_string))
 
 def makeDicts():
   """makes dictionary of shakespeare sentances word, sentence pairs"""
@@ -14,43 +26,21 @@ def makeDicts():
   macbeth = nltk.corpus.gutenberg.sents('shakespeare-macbeth.txt')
 
   shakespeare = {}
-  for sent in caesar:
-    for word in sent:
-      if word.lower() in shakespeare.keys():
-        shakespeare[word.lower()].append(" ".join(sent))
-      else:
-        
-        shakespeare[word.lower()] = []
-        shakespeare[word.lower()].append(" ".join(sent))
+  addPlay(shakespeare, caesar)
 
-  for sent in hamlet:
-    for word in sent:
-      if word.lower() in shakespeare.keys():
-        shakespeare[word.lower()].append(" ".join(sent))
-      else:
-    	  shakespeare[word.lower()] = []
-    	  shakespeare[word.lower()].append(" ".join(sent))
+  addPlay(shakespeare, hamlet)
 
-  for sent in macbeth:
-    for word in sent:
-      if word.lower() in shakespeare.keys():
-    	  shakespeare[word.lower()].append(" ".join(sent))
-      else:
-    	  shakespeare[word.lower()] =[]
-    	  shakespeare[word.lower()].append(" ".join(sent))
+  addPlay(shakespeare, macbeth)
 
   return shakespeare
 
-def getSentence(keyword_list):
+def getSentence(keyword_list, shakespeare):
   """returns list of sentences containing given keyword"""  
-  shakespeare = makeDicts()
   #print(keyword_list)
   list_ = []
   for keyword in keyword_list:
     if keyword in shakespeare.keys():
-      #print('here')
       list_ += shakespeare[keyword]
-      #print(list_)
       return list_
   else:
     return []

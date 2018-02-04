@@ -7,10 +7,10 @@ from twilio import twiml
 from nltk.corpus import gutenberg
 from lit_chat_parsing import * # getKeyword, getSentence, chooseSentence
 #from databaseParser import *
-def parseUserMessage(msg):
+def parseUserMessage(msg, shakespeare):
 	clean_msg = keywordParse.processInput(msg)
 	keyword = keywordParse.getKeyword(clean_msg)
-	list_ = databaseParser.getSentence(keyword)
+	list_ = databaseParser.getSentence(keyword, shakespeare)
 	to_respond = sentenceSentiment.chooseSentence(list_)
 	if to_respond == "":
 		return "Sorry but Shakespeare can't hang"
@@ -25,6 +25,7 @@ def parseUserMessage(msg):
 	# 	response.message(inputHandler(msg))
 
 app = Flask(__name__)
+shakespeare = databaseParser.makeDicts()
 @app.route('/sms', methods=['GET', 'POST'])
 
 def sms():
@@ -33,7 +34,7 @@ def sms():
 	resp = MessagingResponse()
 	
 	# based on incoming message, send different message
-	to_respond = parseUserMessage(msg)
+	to_respond = parseUserMessage(msg, shakespeare)
 
 	resp.message(to_respond)
 	

@@ -1,26 +1,32 @@
 from google.cloud import language
-client = language.LangaugeServiceClient()
+client = language.LanguageServiceClient()
+from random import choice
 
-def chooseSentence(sent){
-    sentscore = 0
-    result = ""
-    for item in sent:
-      doceument = langauge.types.Document(
-        content = item
-        type = 'PLAIN_TEXT',
-      )
-      response = client.analyze_sentiment(
-        document = document,
-        encoding_type='UTF32',
-      )
-      sentiment = response.document_sentiment
-      if sentiment.magnitude >= sentscore:
-        result = item;
-    return result
+def chooseSentence(sent):
+	# 'sent', is now a list of (score, sentence) pairs.
+	if len(sent) >= 1:
+		return choice(sent)[1]
+	else:
+		return ""
+    # sentscore = 0
+    # result = ""
 
-      #print(sentiment.score)
-      #print(sentiment.magntiude)
+    # for score, sent_item in sent:
+    # 	if score >= score:
+    # 		result = sent_item
+    # return result
 
 
-}
+def sentimentOfSentence(item):
+	document = language.types.Document(
+	    content = item,
+	    type = 'PLAIN_TEXT',
+	    )
+	response = client.analyze_sentiment(
+	    document = document,
+	    encoding_type='UTF32',
+	    )
+	sentiment = response.document_sentiment
+	
+	return sentiment.magnitude
 
