@@ -43,10 +43,4 @@ def getKeyword(msg):
     return analyze_entities_2(msg)
 	# return msg
 
-def chooseSentence(list_):
-	#print(list_)
-	if len(list_ )>=1:
-		return list_[0]
-	else:
-		return ""
 
